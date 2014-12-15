@@ -1,10 +1,21 @@
 {
     "name": "hubot-sshchat",
     "version": "0.0.1",
+    "description": "hubot adapter for sshchat",
+    "author": "Chad Etzel <jazzychad@gmail.com>",
     "dependencies": {
         "ssh2": "0.3.6"
     },
     "main": "./src/sshchat",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jazzychad/hubot-sshchat"
+    },
+    "keywords": [
+        "hubot",
+        "sshchat"
+    ],
+    "license": "MIT",
     "engines": {
         "node": "*"
     }
