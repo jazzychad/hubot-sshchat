@@ -1,0 +1,11 @@
+{
+    "name": "hubot-sshchat",
+    "version": "0.0.1",
+    "dependencies": {
+        "ssh2": "0.3.6"
+    },
+    "main": "./src/sshchat",
+    "engines": {
+        "node": "*"
+    }
+}
