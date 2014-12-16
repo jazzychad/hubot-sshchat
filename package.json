@@ -1,6 +1,6 @@
 {
     "name": "hubot-sshchat",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "hubot adapter for sshchat",
     "author": "Chad Etzel <jazzychad@gmail.com>",
     "dependencies": {

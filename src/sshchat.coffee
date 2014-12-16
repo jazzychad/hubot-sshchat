@@ -13,6 +13,7 @@ class SSHChatAdapter extends Adapter
     for string in strings
       strs = string.split "\n"
       for str in strs
+        continue if str.substring(0,1) == "/"
         if envelope?.user?.room == "pm"
           @sshStream.write "/msg " + envelope.user.name + " " + str + "\r"
         else
