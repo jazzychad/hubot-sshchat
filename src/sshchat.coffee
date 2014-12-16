@@ -20,7 +20,7 @@ class SSHChatAdapter extends Adapter
 
   reply: (envelope, strings...) ->
     for string in strings
-      @send string
+      @send envelope, envelope.user.name + ": " + string
 
   run: ->
     self = @
@@ -36,6 +36,7 @@ class SSHChatAdapter extends Adapter
         throw err if err
         self.sshStream = stream
         self.emit "connected"
+        stream.write "/theme mono" + "\r"
         stream.on 'data', (data) ->
           data = data + ""
           #console.log("** raw data: " + data)
