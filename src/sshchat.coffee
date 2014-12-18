@@ -31,13 +31,30 @@ class SSHChatAdapter extends Adapter
       username: process.env.HUBOT_SSHCHAT_USERNAME
       privateKey: require('fs').readFileSync(process.env.HUBOT_SSHCHAT_IDENTKEY)
     conn.connect options
+    conn.on "end", ->
+      console.log("connection ended")
+      process.exit 0
+    conn.on "exit", ->
+      console.log("connection exited")
+      process.exit 0
+    conn.on "error", (err) ->
+      console.log("connection error: " + err)
+      process.exit 0
     conn.on "ready", ->
       console.log "connected to ssh-chat!"
       conn.shell (err, stream) ->
-        throw err if err
+        if err
+          console.log("shell error!!!!!!!!!!!")
+          process.exit 0
         self.sshStream = stream
         self.emit "connected"
         stream.write "/theme mono" + "\r"
+        stream.on 'exit', (code, signal) ->
+          console.log("stream exit. code: " + code + " - signal: " + signal)
+          process.exit 0
+        stream.on 'close', ->
+          conn.end()
+          process.exit 0
         stream.on 'data', (data) ->
           data = data + ""
           #console.log("** raw data: " + data)
